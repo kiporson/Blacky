@@ -1,5 +1,6 @@
 from flask import Flask, render_template_string
 import sqlite3
+from core import telegram_notifier  # ✅ Tambahan penting
 
 app = Flask(__name__)
 
@@ -54,4 +55,5 @@ def dashboard():
     return render_template_string(TEMPLATE, labels=labels, data=data)
 
 if __name__ == "__main__":
+    telegram_notifier.notify_start()  # ✅ Tambahkan ini sebelum app.run()
     app.run(host="0.0.0.0", port=8080)
