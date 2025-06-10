@@ -1,10 +1,24 @@
+import time
+import logging
+from core import telegram_notifier
 
-def split_affiliate_link(base_url, user_id):
-    return f"{base_url}?ref={user_id}"
+logging.basicConfig(filename='log/affiliate_splitter.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
-def generate_affiliate_links(user_id, platforms):
-    links = {}
-    for platform in platforms:
-        base_url = platforms[platform]
-        links[platform] = split_affiliate_link(base_url, user_id)
-    return links
+def dispatch():
+    telegram_notifier.send_telegram_message("🪙 Affiliate Splitter mulai berjalan.")
+    try:
+        # Contoh proses split affiliate
+        for i in range(1, 4):
+            msg = f"🔄 Memproses batch affiliate ke-{i}"
+            print(msg)
+            logging.info(msg)
+            telegram_notifier.send_telegram_message(msg)
+            # Simulasi delay pemrosesan batch
+            time.sleep(3)
+        telegram_notifier.send_telegram_message("✅ Affiliate Splitter selesai memproses semua batch.")
+    except Exception as e:
+        err_msg = f"⚠️ Error di Affiliate Splitter: {str(e)}"
+        print(err_msg)
+        logging.error(err_msg)
+        telegram_notifier.send_telegram_message(err_msg)
