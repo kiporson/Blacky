@@ -16,7 +16,7 @@ def begin():
                 print(msg)
                 logging.info(msg)
                 telegram_notifier.send_telegram_message(msg)
-                time.sleep(2)
+                time.sleep(3)  # Simulasi kerja tiap round
 
             telegram_notifier.send_telegram_message("✅ Push Loop selesai satu siklus, menunggu 5 menit.")
             time.sleep(300)  # jeda 5 menit sebelum loop ulang
