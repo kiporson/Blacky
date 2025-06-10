@@ -1,33 +1,37 @@
 import os
-import requests
+import logging
 from core import telegram_notifier
+
+logging.basicConfig(filename='log/auto_withdraw.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 def auto_withdraw_to_wallet(amount, coin="USDT", network="TRX", address=None):
     address = address or os.getenv("MAIN_WALLET_ADDRESS")
     if not address:
-        telegram_notifier.send_telegram_message("⚠️ <b>Penarikan gagal: alamat wallet tidak tersedia.</b>")
-        raise Exception("⚠️ Alamat wallet tidak tersedia.")
+        error_msg = "⚠️ Penarikan gagal: alamat wallet tidak tersedia."
+        print(error_msg)
+        logging.error(error_msg)
+        telegram_notifier.send_telegram_message(error_msg)
+        raise Exception("Alamat wallet tidak tersedia.")
 
-    # Notifikasi awal
-    telegram_notifier.send_telegram_message(
-        f"💸 <b>Menyiapkan penarikan otomatis</b>\n"
-        f"Jumlah: <b>{amount} {coin}</b>\n"
-        f"Jaringan: <b>{network}</b>\n"
-        f"Tujuan: <code>{address}</code>"
-    )
+    try:
+        telegram_notifier.send_telegram_message(
+            f"💸 Menyiapkan penarikan otomatis\nJumlah: <b>{amount} {coin}</b>\nJaringan: <b>{network}</b>\nTujuan: <code>{address}</code>"
+        )
+        # Simulasi proses withdraw ke API
+        print(f"Menarik {amount} {coin} ke {address} via jaringan {network}...")
+        logging.info(f"Withdraw {amount} {coin} ke {address} via {network}")
 
-    # Simulasi payload API (dummy)
-    payload = {
-        "coin": coin,
-        "network": network,
-        "amount": amount,
-        "address": address
-    }
+        # Simulasi delay proses
+        import time
+        time.sleep(5)
 
-    # Simulasi proses penarikan
-    print(f"💸 Menyiapkan penarikan otomatis {amount} {coin} ke {address} lewat jaringan {network}...")
-    # Biasanya di sini request ke API exchange, contoh: requests.post("https://...", data=payload)
-
-    # Notifikasi sukses
-    telegram_notifier.send_telegram_message("✅ <b>Penarikan berhasil disimulasikan.</b>")
-    return True
+        telegram_notifier.send_telegram_message("✅ Penarikan otomatis berhasil.")
+        logging.info("Penarikan otomatis berhasil.")
+        return True
+    except Exception as e:
+        error_msg = f"⚠️ Gagal melakukan penarikan: {str(e)}"
+        print(error_msg)
+        logging.error(error_msg)
+        telegram_notifier.send_telegram_message(error_msg)
+        return False
