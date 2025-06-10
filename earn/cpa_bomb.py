@@ -1,17 +1,31 @@
 import time
+import logging
 from core import telegram_notifier
 
-# Daftar dummy CPA links untuk simulasi
-CPA_LINKS = [
-    "https://cpa-network.com/offer1",
-    "https://cpa-network.com/offer2",
-    "https://cpa-network.com/offer3"
-]
+logging.basicConfig(filename='log/cpa_bomb.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 def run():
-    telegram_notifier.send_telegram_message("💣 <b>Memulai serangan CPA Bomb...</b>")
-    for link in CPA_LINKS:
-        print(f"🔥 Mengakses: {link}")
-        telegram_notifier.send_telegram_message(f"➡️ <b>Mengakses:</b> {link}")
-        time.sleep(2)
-    telegram_notifier.send_telegram_message("✅ <b>CPA Bomb selesai dijalankan.</b>")
+    links = [
+        "https://cpa.example1.com",
+        "https://cpa.example2.com",
+        "https://cpa.example3.com"
+    ]
+    telegram_notifier.send_telegram_message("💣 CPA Bomb mulai dijalankan!")
+    for link in links:
+        try:
+            msg = f"🔥 Mengakses CPA link: {link}"
+            print(msg)
+            logging.info(msg)
+            telegram_notifier.send_telegram_message(msg)
+            
+            # Simulasi delay akses link CPA
+            time.sleep(4)
+            
+            telegram_notifier.send_telegram_message(f"✅ Selesai mengakses link: {link}")
+        except Exception as e:
+            err_msg = f"⚠️ Error akses CPA link {link}: {str(e)}"
+            print(err_msg)
+            logging.error(err_msg)
+            telegram_notifier.send_telegram_message(err_msg)
+    telegram_notifier.send_telegram_message("🎯 Semua link CPA selesai di-bomb.")
