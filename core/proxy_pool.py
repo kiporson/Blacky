@@ -1,7 +1,19 @@
-
 import random
+import os
+import requests
 
-PROXIES = [
+def fetch_external_proxies():
+    url = os.getenv("PROXY_API_SOURCE")
+    if not url:
+        return []
+    try:
+        res = requests.get(url, timeout=5)
+        return res.text.strip().splitlines()
+    except Exception as e:
+        print("❌ Gagal ambil proxy dari API:", e)
+        return []
+
+PROXIES = fetch_external_proxies() or [
     "http://123.45.67.89:8080",
     "http://98.76.54.32:3128",
     "http://111.222.333.444:8000",
