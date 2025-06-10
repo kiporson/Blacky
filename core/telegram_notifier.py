@@ -1,4 +1,3 @@
-
 import requests
 import os
 
@@ -18,7 +17,12 @@ def send_telegram_message(message):
     }
     try:
         response = requests.post(url, json=payload)
+        print("📨 Telegram sent →", response.text)
         return response.status_code == 200
     except Exception as e:
         print(f"❌ Gagal kirim Telegram: {e}")
         return False
+
+# 🔥 Fungsi yang dipanggil dari dashboard.py
+def notify_start():
+    send_telegram_message("🔥 DIABLO TELAH AKTIF DI RAILWAY 🔥")
