@@ -13,6 +13,9 @@ def notify_start():
             "text": message
         }
         try:
-            requests.post(url, data=data)
+            res = requests.post(url, data=data)
+            print("📨 Telegram sent →", res.text)  # ⬅ Tambahan penting untuk log
         except Exception as e:
             print("Telegram error:", e)
+    else:
+        print("⚠️ TELEGRAM_TOKEN or CHAT_ID is missing in env")
