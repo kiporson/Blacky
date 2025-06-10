@@ -1,0 +1,5 @@
+link1.example.com
+link2.example.org
+offercloak.site
+redirector.me
+blastpage.info

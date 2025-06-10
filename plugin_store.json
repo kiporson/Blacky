@@ -1,0 +1,12 @@
+[
+    {
+        "name": "AutoLinkBlaster",
+        "description": "Blasts multiple shortlinks from task list",
+        "filename": "autolink.psoul"
+    },
+    {
+        "name": "CloakWave",
+        "description": "Advanced anti-bot fingerprinting trick",
+        "filename": "cloakwave.psoul"
+    }
+]

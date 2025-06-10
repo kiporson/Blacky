@@ -1,0 +1,18 @@
+{
+  "api_key": "YOUR_API_KEY_HERE",
+  "telegram_bot_token": "8102743787:AAHG2-QvZzsljOIVp76qXvE6PYwiRxtPrIA",
+  "telegram_chat_id": "@Diabloppdrop_bot",
+  "proxy_refresh_interval": 1800,
+  "task_interval": 3600,
+  "wallet_min_threshold": 50.0,
+  "wallet_withdraw_to": "0xb807CB37502061533b55Dab2F425290E4A74ecC3",
+  "shortlink_api_key": "YOUR_SHORTLINK_API_KEY",
+  "stealth_mode": true,
+  "log_level": "INFO",
+  "auto_start": true,
+  "target_domains": [
+    "example.com",
+    "targetnetwork.org",
+    "trackingpage.net"
+  ]
+}
