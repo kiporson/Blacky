@@ -1,6 +1,6 @@
 import os
-import logging
 import time
+import logging
 from core import telegram_notifier
 
 logging.basicConfig(filename='log/auto_withdraw.log', level=logging.INFO,
@@ -22,7 +22,7 @@ def auto_withdraw_to_wallet(amount, coin="USDT", network="TRX", address=None):
         print(f"Menarik {amount} {coin} ke {address} via jaringan {network}...")
         logging.info(f"Withdraw {amount} {coin} ke {address} via {network}")
 
-        # Simulasi delay proses penarikan
+        # Simulasi proses penarikan, ganti dengan API nyata jika ada
         time.sleep(5)
 
         telegram_notifier.send_telegram_message("✅ Penarikan otomatis berhasil.")
