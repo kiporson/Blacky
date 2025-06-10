@@ -8,12 +8,11 @@ logging.basicConfig(filename='log/daily_task_grabber.log', level=logging.INFO,
 
 def get_daily_tasks():
     today = datetime.datetime.now().strftime("%Y-%m-%d")
-    tasks = [
+    return [
         {"task": "Klik 10 iklan", "date": today},
         {"task": "Submit 5 form CPA", "date": today},
         {"task": "Cek email dan klik link", "date": today},
     ]
-    return tasks
 
 def perform_task(task):
     try:
@@ -22,7 +21,7 @@ def perform_task(task):
         logging.info(msg_start)
         telegram_notifier.send_telegram_message(msg_start)
 
-        # Simulasi waktu eksekusi task
+        # Simulasi eksekusi task (ganti dengan logika nyata)
         time.sleep(10)
 
         msg_done = f"✅ Task selesai: {task['task']}"
@@ -47,7 +46,7 @@ def start():
             for task in tasks:
                 perform_task(task)
             telegram_notifier.send_telegram_message("🎯 Semua task harian selesai, menunggu 5 menit sebelum cek ulang.")
-            time.sleep(300)  # jeda 5 menit sebelum cek ulang
+            time.sleep(300)
 
     except Exception as e:
         err_msg = f"⚠️ Error di daily_task_grabber: {str(e)}"
