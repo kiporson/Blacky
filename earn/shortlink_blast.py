@@ -2,12 +2,11 @@ import time
 import logging
 from core import telegram_notifier
 
-logging.basicConfig(filename='log/shortlink_blast.log', level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 def fire():
     telegram_notifier.send_telegram_message("🚀 Shortlink Blast mulai dijalankan.")
-    logging.info("Shortlink Blast started.")
+    logger.info("Shortlink Blast started.")
 
     shortlinks = [
         "https://shortlink.example1.com",
@@ -20,7 +19,7 @@ def fire():
             for link in shortlinks:
                 msg = f"🔗 Mengirim trafik ke shortlink: {link}"
                 print(msg)
-                logging.info(msg)
+                logger.info(msg)
                 telegram_notifier.send_telegram_message(msg)
                 time.sleep(3)  # Simulasi delay trafik
 
@@ -30,5 +29,5 @@ def fire():
     except Exception as e:
         err_msg = f"⚠️ Error di Shortlink Blast: {str(e)}"
         print(err_msg)
-        logging.error(err_msg)
+        logger.error(err_msg)
         telegram_notifier.send_telegram_message(err_msg)

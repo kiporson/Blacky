@@ -13,15 +13,19 @@ from dashboard import app
 # Load environment variables from .env file
 load_dotenv()
 
-logging.basicConfig(filename='log/diablo_blackhat.log', level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    filename="log/diablo_blackhat.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 def run_flask():
     app.run(host="0.0.0.0", port=8080)
 
 def notify(msg):
     print(msg)
-    logging.info(msg)
+    logger.info(msg)
     telegram_notifier.send_telegram_message(msg)
 
 def startup_banner():
