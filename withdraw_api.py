@@ -1,8 +1,6 @@
 import requests
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from main import load_dotenv
 
 API_ENDPOINT = "https://api.example-exchange.com/withdraw"
 API_KEY = os.getenv("EXCHANGE_API_KEY")

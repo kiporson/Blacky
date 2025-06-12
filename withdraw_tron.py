@@ -1,8 +1,6 @@
 import os
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
+from main import load_dotenv
 
 TRON_API = "https://api.trongrid.io/wallet/createtransaction"
 TRX_ADDRESS = os.getenv("TRX_ADDRESS")

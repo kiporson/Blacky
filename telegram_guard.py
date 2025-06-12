@@ -1,8 +1,6 @@
 import os
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
+from main import load_dotenv
 
 token = os.getenv("TELEGRAM_TOKEN")
 chat_id = os.getenv("TELEGRAM_CHAT_ID")
