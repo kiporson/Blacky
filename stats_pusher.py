@@ -13,7 +13,7 @@ def push_stats():
     total = cursor.fetchone()[0] or 0.0
     conn.close()
 
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    token = os.getenv("TELEGRAM_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     msg = f"📈 Total earnings saat ini: ${total:.2f}"
     requests.post(f"https://api.telegram.org/bot{token}/sendMessage",

@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-token = os.getenv("TELEGRAM_BOT_TOKEN")
+token = os.getenv("TELEGRAM_TOKEN")
 chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
 def notify(msg):

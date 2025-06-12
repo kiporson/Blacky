@@ -10,3 +10,8 @@ def simulate_human_behavior():
         action = random.choice(actions)
         print(f"⚙️ Aksi: {action}")
         time.sleep(random.uniform(0.3, 1.2))
+
+def run():
+    while True:
+        simulate_human_behavior()
+        time.sleep(5)
