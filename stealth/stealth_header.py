@@ -7,3 +7,8 @@ def get_stealth_headers():
         "X-Requested-With": "XMLHttpRequest"
     }
     return headers
+
+# Backwards compatibility wrapper so main.py can call `stealth_header.inject()`
+def inject():
+    """Return stealth headers for injection."""
+    return get_stealth_headers()

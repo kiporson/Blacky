@@ -1,4 +1,17 @@
 from wallet_split.withdraw_binance import withdraw
+import sqlite3
+
+def get_current_earnings_usdt():
+    """Return total earnings stored in the local database."""
+    try:
+        conn = sqlite3.connect("vault/earnings.db")
+        cur = conn.cursor()
+        cur.execute("SELECT SUM(amount) FROM earnings")
+        total = cur.fetchone()[0] or 0.0
+        conn.close()
+        return float(total)
+    except Exception:
+        return 0.0
 
 def check_and_withdraw_if_earnings_exist():
     earnings = get_current_earnings_usdt()  # Fungsi internal

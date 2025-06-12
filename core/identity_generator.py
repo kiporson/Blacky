@@ -20,3 +20,7 @@ def generate_identity():
         "username": generate_username(),
         "password": generate_password()
     }
+
+# Backwards compatibility wrapper
+def generate():
+    return generate_identity()
