@@ -2,6 +2,8 @@ import requests
 import time
 import logging
 
+logger = logging.getLogger(__name__)
+
 def benchmark(proxy_list):
     results = []
     for proxy in proxy_list:
@@ -14,10 +16,10 @@ def benchmark(proxy_list):
             r = requests.get("http://httpbin.org/ip", proxies=proxies, timeout=5)
             elapsed = time.time() - start
             results.append((proxy, True, round(elapsed, 2)))
-            logging.info(f"[PROXY BENCH] {proxy} OK ({elapsed:.2f}s)")
+            logger.info(f"[PROXY BENCH] {proxy} OK ({elapsed:.2f}s)")
         except Exception:
             results.append((proxy, False, None))
-            logging.warning(f"[PROXY BENCH] {proxy} FAIL")
+            logger.warning(f"[PROXY BENCH] {proxy} FAIL")
     return results
 
 if __name__ == "__main__":
