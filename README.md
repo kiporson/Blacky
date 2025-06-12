@@ -25,3 +25,11 @@ Siapkan file `.env` berdasarkan contoh `.env.example` dengan variabel berikut:
 - `API_KEY` dan `SECRET_KEY` - kredensial aplikasi
 - `MAIN_WALLET_ADDRESS` - alamat dompet utama untuk withdraw
 - `PROXY_API_SOURCE` - endpoint daftar proxy (opsional)
+- `BINANCE_API_KEY` dan `BINANCE_API_SECRET` - akses API Binance untuk withdraw
+- `TRX_PRIVATE_KEY` - kunci pribadi saat menggunakan `withdraw_tron.py`
+
+## Withdraw
+Script penarikan tersedia untuk Binance dan TRX:
+
+- Jalankan `python3 wallet_split/withdraw_binance.py` setelah mengatur `BINANCE_API_KEY` dan `BINANCE_API_SECRET`.
+- Gunakan `python3 withdraw_tron.py` dan isi `TRX_PRIVATE_KEY` untuk penarikan TRX.
