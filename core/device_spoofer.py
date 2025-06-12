@@ -19,3 +19,7 @@ def generate_user_agent():
     model = random.choice(['SM-A515F', 'M2007J20CI', 'RMX3085', 'CPH2219'])
     version = random.choice(['10', '11', '12', '13'])
     return base.format(version=version, model=model)
+
+# Backwards compatibility wrapper
+def spoof():
+    return spoof_device()

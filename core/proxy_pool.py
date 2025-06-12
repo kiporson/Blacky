@@ -13,13 +13,21 @@ def fetch_external_proxies():
         print("❌ Gagal ambil proxy dari API:", e)
         return []
 
-PROXIES = fetch_external_proxies() or [
+PROXIES = []
+
+DEFAULT_PROXIES = [
     "http://123.45.67.89:8080",
     "http://98.76.54.32:3128",
     "http://111.222.333.444:8000",
     "http://185.45.12.99:1080",
     "http://200.100.50.25:9999"
 ]
+
+def initialize():
+    """Populate the proxy pool from the external API if available."""
+    global PROXIES
+    proxies = fetch_external_proxies()
+    PROXIES = proxies or DEFAULT_PROXIES
 
 def get_random_proxy():
     return random.choice(PROXIES)
