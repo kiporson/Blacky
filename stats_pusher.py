@@ -2,9 +2,7 @@ import sqlite3
 import json
 import os
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
+from main import load_dotenv
 
 def push_stats():
     conn = sqlite3.connect("vault/earnings.db")
